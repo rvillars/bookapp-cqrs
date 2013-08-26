@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>ch.bfh.swos.bookapp.parent</artifactId>
+        <groupId>ch.bfh.swos.bookapp</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+
+    <artifactId>ch.bfh.swos.bookapp.vertx</artifactId>
+    <name>Bookapp vert.x</name>
+
+    <packaging>war</packaging>
+
+    <dependencies>
+        <dependency>
+            <groupId>ch.bfh.swos.bookapp</groupId>
+            <artifactId>ch.bfh.swos.bookapp.cqrs</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>ch.bfh.swos.bookapp</groupId>
+            <artifactId>ch.bfh.swos.bookapp.service</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-webmvc</artifactId>
+            <version>3.2.0.RELEASE</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-core</artifactId>
+            <version>2.0.1-final</version>
+        </dependency>
+        <dependency>
+            <groupId>io.vertx</groupId>
+            <artifactId>vertx-platform</artifactId>
+            <version>2.0.1-final</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.axonframework</groupId>
+            <artifactId>axon-core</artifactId>
+            <version>2.0.3</version>
+        </dependency>
+    </dependencies>
+
+</project>

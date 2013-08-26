@@ -1,0 +1,50 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:axon="http://www.axonframework.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+                           http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd">
+
+    <import resource="classpath*:persistenceContext.xml"/>
+
+    <context:component-scan base-package="ch.bfh.swos.bookapp.cqrs" />
+    <context:annotation-config/>
+
+    <axon:annotation-config />
+
+    <axon:command-bus id="commandBus"/>
+    <axon:event-bus id="eventBus"/>
+
+    <axon:event-sourcing-repository id="eventBookRepository"
+                                    aggregate-type="ch.bfh.swos.bookapp.cqrs.book.domain.Book"/>
+
+    <axon:event-sourcing-repository id="eventAuthorRepository"
+                                    aggregate-type="ch.bfh.swos.bookapp.cqrs.author.domain.Author"/>
+
+    <axon:aggregate-command-handler id="bookHandler"
+                                    aggregate-type="ch.bfh.swos.bookapp.cqrs.book.domain.Book"
+                                    repository="eventBookRepository"
+                                    command-bus="commandBus"/>
+
+    <axon:aggregate-command-handler id="authorHandler"
+                                    aggregate-type="ch.bfh.swos.bookapp.cqrs.author.domain.Author"
+                                    repository="eventAuthorRepository"
+                                    command-bus="commandBus"/>
+
+    <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
+        <property name="commandBus" ref="commandBus"/>
+    </bean>
+
+    <axon:filesystem-event-store id="eventStore" base-dir="c:/events"/>
+
+    <!--<bean id="eventStore" class="org.axonframework.eventstore.mongo.MongoEventStore">-->
+        <!--<constructor-arg ref="mongoTemplate"/>-->
+    <!--</bean>-->
+    <!--<bean id="mongoTemplate" class="org.axonframework.eventstore.mongo.DefaultMongoTemplate">-->
+        <!--<constructor-arg ref="mongoDB"/>-->
+    <!--</bean>-->
+    <!--<bean id="mongoDB" class="com.mongodb.Mongo" factory-bean="mongoFactoryBean" factory-method="createMongo"/>-->
+    <!--<bean id="mongoFactoryBean" class="org.axonframework.eventstore.mongo.MongoFactory"/>-->
+
+</beans>

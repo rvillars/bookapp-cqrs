@@ -1,0 +1,51 @@
+<div ng-controller="BookController">
+    <form id="form" name="form">
+    	<fieldset>
+        	<legend>Current Book</legend>
+        	<label for="title">Title</label>
+        	<input id="title" required type="text" ng-model="currentBook.title" placeholder="Enter a book title..." class="span5"/>
+	        <label for="releaseDate">Release date</label>
+	        <input id="releaseDate" type="text" ng-model="currentBook.releaseDate" ui-date="{ dateFormat: 'dd.mm.yy' }" date="dd.MM.yyyy"/>
+	       	<label for="author">Author</label>
+			<select id="author" required ng-model="currentBook.author" ng-options="author as (author.firstname + ' ' + author.lastname) for author in authors">
+				<option value="">-- choose author --</option>
+			</select>
+	       	<label for="id" ng-show="showId">Id</label>
+	        <input id="id" type="text" disabled="disabled" ng-model="currentBook.id" ng-show="showId" class="span1"/>
+	        <div class="form-actions">
+	        	<button id="save" ng-click="save()" ng-disabled="form.$invalid" class="btn btn-primary">Save Book</button>
+	        	<button id="cancel" ng-click="cancel()" class="btn">Cancel</button>
+	        </div>
+        </fieldset>
+    </form>
+
+    <form id="list">        
+        <fieldset>
+        	<legend>Books</legend>
+        	<label for="showId" class="checkbox">
+	        	<input id="showId" type="checkbox" ng-model="showId">Show Id</input>
+	        </label>
+	        <table id="table" class="table table-striped table-bordered table-condensed">
+	            <thead>
+	            <tr>
+	                <th>Titel</th>
+	                <th>Release Date</th>
+	                <th>Author</th>
+	                <th ng-show="showId">Id</th>
+	                <th>Actions</th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            <tr ng-repeat="book in books">
+	                <td>{{book.title}}</td>
+	                <td>{{book.releaseDate | date:'dd.MM.yyyy'}}</td>
+	                <td>{{book.author.firstname }} {{book.author.lastname}}</td>
+	                <td ng-show="showId">{{book.id}}</td>
+	                <td><button id="edit" ng-click="edit(book)" class="btn btn-mini">Edit</button></td>
+	                <td><button id="delete" ng-click="remove($index, book.id)" class="btn btn-mini">Delete</button></td>
+	            </tr>
+	            </tbody>
+	        </table>
+        </fieldset>
+    </form>
+</div>

@@ -1,0 +1,69 @@
+<div ng-controller="BookController">
+    <form id="form" name="form">
+        <fieldset>
+            <legend>New Book</legend>
+            <label for="title">Title</label>
+            <input id="title" required type="text" ng-model="currentBook.title" placeholder="Enter a book title..." class="span5"/>
+            <label for="releaseDate">Release date</label>
+            <input id="releaseDate" type="text" ng-model="currentBook.releaseDate" ui-date="{ dateFormat: 'dd.mm.yy' }" date="dd.MM.yyyy"/>
+            <label for="author">Author</label>
+            <select id="author" required ng-model="currentBook.author" ng-options="author as (author.firstname + ' ' + author.lastname) for author in authors">
+                <option value="">-- choose author --</option>
+            </select>
+            <div class="form-actions">
+                <button id="save" ng-click="sendAddBookCommand()" ng-disabled="form.$invalid" class="btn btn-primary">Add Book</button>
+                <button id="cancel" ng-click="cancel()" class="btn">Cancel</button>
+            </div>
+        </fieldset>
+    </form>
+
+    <form id="list">
+        <fieldset>
+            <legend>Books</legend>
+            <label for="showId" class="checkbox">
+                <input id="showId" type="checkbox" ng-model="showId">Show Id</input>
+            </label>
+            <table id="table" class="table table-striped table-bordered table-condensed">
+                <thead>
+                <tr>
+                    <th>Titel</th>
+                    <th>Release Date</th>
+                    <th>Author</th>
+                    <th ng-show="showId">Id</th>
+                    <th>Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat="book in books">
+                    <td>{{book.title}}</td>
+                    <td>{{book.releaseDate | date:'dd.MM.yyyy'}}</td>
+                    <td>{{book.author.firstname }} {{book.author.lastname}}</td>
+                    <td ng-show="showId">{{book.bookId}}</td>
+                    <td><a href="#changeTitleModal" role="button" class="btn btn-mini" data-toggle="modal">Change Title</a></td>
+                    <td><button id="delete" ng-click="sendRemoveBookCommand(book.bookId)" class="btn btn-mini">Remove</button></td>
+                </tr>
+                </tbody>
+            </table>
+        </fieldset>
+    </form>
+
+    <div id="changeTitleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            <h3 id="myModalLabel">Change Book Title</h3>
+        </div>
+        <div class="modal-body">
+            <form id="changeTitleform" name="changeTitleform">
+                <fieldset>
+                    <label for="newTitle">New Title</label>
+                    <input id="newTitle" required type="text" ng-model="newTitle" placeholder="Enter new book title..."/>
+                </fieldset>
+            </form>
+        </div>
+        <div class="modal-footer">
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
+            <button class="btn btn-primary" ng-click="sendChangeBookTitleCommand(book.bookId, newTitle)">Save</button>
+        </div>
+    </div>
+
+</div>

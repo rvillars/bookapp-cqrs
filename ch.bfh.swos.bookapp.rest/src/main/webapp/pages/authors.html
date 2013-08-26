@@ -1,0 +1,45 @@
+<div ng-controller="AuthorController">
+    <form id="form" name="form">
+    	<fieldset>
+        	<legend>Current Author</legend>
+        	<label for="firstname">Firstname</label>
+        	<input id="firstname" required type="text" ng-model="currentAuthor.firstname" placeholder="Enter an author firstname..." class="span5"/>
+        	<label for="lastname">Lastname</label>
+        	<input id="lastname" required type="text" ng-model="currentAuthor.lastname" placeholder="Enter an author lastname..." class="span5"/>
+        	<label for="id" ng-show="showId">Id</label>
+	        <input id="id" type="text" disabled="disabled" ng-model="currentAuthor.id" ng-show="showId" class="span1"/>	      
+	        <div class="form-actions">
+	        	<button id="save" ng-click="save()" ng-disabled="form.$invalid" class="btn btn-primary">Save Author</button>
+	        	<button id="cancel" ng-click="cancel()" class="btn">Cancel</button>
+	        </div>
+        </fieldset>
+    </form>
+
+    <form id="list">        
+        <fieldset>
+        	<legend>Authors</legend>
+        	<label for="showId" class="checkbox">
+	        	<input id="showId" type="checkbox" ng-model="showId">Show Id</input>
+	        </label>
+	        <table id="table" class="table table-striped table-bordered table-condensed">
+	            <thead>
+	            <tr>
+	                <th>Firstname</th>
+	                <th>Lastname</th>
+	                <th ng-show="showId">Id</th>
+	                <th>Actions</th>
+	            </tr>
+	            </thead>
+	            <tbody>
+	            <tr ng-repeat="author in authors">
+	                <td>{{author.firstname}}</td>
+	                <td>{{author.lastname}}</td>
+	                <td ng-show="showId">{{author.id}}</td>
+	                <td><button id="edit" ng-click="edit(author)" class="btn btn-mini">Edit</button></td>
+	                <td><button id="delete" ng-click="remove($index, author.id)" class="btn btn-mini">Delete</button></td>
+	            </tr>
+	            </tbody>
+	        </table>
+        </fieldset>
+    </form>
+</div>
