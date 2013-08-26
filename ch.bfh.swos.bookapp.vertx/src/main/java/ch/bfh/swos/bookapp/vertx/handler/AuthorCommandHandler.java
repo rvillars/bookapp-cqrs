@@ -43,7 +43,7 @@ public class AuthorCommandHandler {
             @Override
             public void handle(Message<JsonObject> payload) {
                 System.out.println("VertX received author add command for: "+payload.body().getString("firstname")+ " " + payload.body().getString("lastname"));
-                payload.reply("VertX received author add command for: "+payload.body().getString("firstname")+ " " + payload.body().getString("lastname"));
+                payload.reply("Received author add command for: "+payload.body().getString("firstname")+ " " + payload.body().getString("lastname"));
                 commandGateway.send(new AddAuthorCommand(payload.body().getString("firstname"), payload.body().getString("lastname")));
             }
         });
@@ -52,7 +52,7 @@ public class AuthorCommandHandler {
             @Override
             public void handle(Message<JsonObject> payload) {
                 System.out.println("VertX received author remove command for: " + payload.body().getString("authorId"));
-                payload.reply("VertX received author remove command for id: " + payload.body().getString("authorId"));
+                payload.reply("Received author remove command for id: " + payload.body().getString("authorId"));
                 commandGateway.send(new RemoveAuthorCommand(payload.body().getString("authorId")));
             }
         });

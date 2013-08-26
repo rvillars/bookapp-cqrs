@@ -43,7 +43,7 @@ public class BookCommandHandler {
             @Override
             public void handle(Message<JsonObject> payload) {
                 System.out.println("VertX received book add command for: " + payload.body().getString("bookTitle"));
-                payload.reply("VertX received book add command for: " + payload.body().getString("bookTitle"));
+                payload.reply("Received book add command for: " + payload.body().getString("bookTitle"));
                 commandGateway.send(new AddBookCommand(payload.body().getString("bookTitle"), new Date(payload.body().getLong("releaseDate")), payload.body().getString("authorId")));
             }
         });
@@ -52,7 +52,7 @@ public class BookCommandHandler {
             @Override
             public void handle(Message<JsonObject> payload) {
                 System.out.println("VertX received book remove command for: " + payload.body().getString("bookId"));
-                payload.reply("VertX received book remove command for id: " + payload.body().getString("bookId"));
+                payload.reply("Received book remove command for id: " + payload.body().getString("bookId"));
                 commandGateway.send(new RemoveBookCommand(payload.body().getString("bookId")));
             }
         });

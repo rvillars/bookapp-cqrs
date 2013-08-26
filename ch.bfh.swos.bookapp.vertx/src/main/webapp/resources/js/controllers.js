@@ -13,7 +13,7 @@ function BookController($scope, Book, Author, EventBus) {
 
         // Book added event
         EventBus.registerHandler("event.book.added", function (msg, replyTo) {
-            $.bootstrapGrowl("Book added event received for: "+msg.bookTitle, {offset: {from: 'top', amount: 50},width: 'auto'});
+            $.bootstrapGrowl("Received book added event for: "+msg.bookTitle, {offset: {from: 'top', amount: 50},width: 'auto'});
             var book = new Book();
             book.bookId = msg.bookId;
             book.title = msg.bookTitle;
@@ -25,7 +25,7 @@ function BookController($scope, Book, Author, EventBus) {
 
         // Book removed event
         EventBus.registerHandler("event.book.removed", function (msg, replyTo) {
-            $.bootstrapGrowl("Book removed event received for: "+msg.bookId, {offset: {from: 'top', amount: 50},width: 'auto'});
+            $.bootstrapGrowl("Received book removed event for: "+msg.bookId, {offset: {from: 'top', amount: 50},width: 'auto'});
             var i = $scope.books.length;
             while (i--){
                 if ($scope.books[i].bookId == msg.bookId){
@@ -68,7 +68,7 @@ function AuthorController($scope, Author, EventBus) {
 
         // Author added event
         EventBus.registerHandler("event.author.added", function (msg, replyTo) {
-            $.bootstrapGrowl("Author added event received for: "+msg.firstname+" "+msg.lastname, {offset: {from: 'top', amount: 50},width: 'auto'});
+            $.bootstrapGrowl("Received author added event for: "+msg.firstname+" "+msg.lastname, {offset: {from: 'top', amount: 50},width: 'auto'});
             var author = new Author();
             author.authorId = msg.authorId;
             author.firstname = msg.firstname;
@@ -79,7 +79,7 @@ function AuthorController($scope, Author, EventBus) {
 
         // Author removed event
         EventBus.registerHandler("event.author.removed", function (msg, replyTo) {
-            $.bootstrapGrowl("Author removed event received for: "+msg.authorId, {offset: {from: 'top', amount: 50},width: 'auto'});
+            $.bootstrapGrowl("Receifed author removed event for: "+msg.authorId, {offset: {from: 'top', amount: 50},width: 'auto'});
             var i = $scope.authors.length;
             while (i--){
                 if ($scope.authors[i].authorId == msg.authorId){
