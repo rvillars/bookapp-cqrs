@@ -36,7 +36,7 @@
         <property name="commandBus" ref="commandBus"/>
     </bean>
 
-    <axon:filesystem-event-store id="eventStore" base-dir="c:/events"/>
+    <axon:filesystem-event-store id="eventStore" base-dir="events"/>
 
     <!--<bean id="eventStore" class="org.axonframework.eventstore.mongo.MongoEventStore">-->
         <!--<constructor-arg ref="mongoTemplate"/>-->
