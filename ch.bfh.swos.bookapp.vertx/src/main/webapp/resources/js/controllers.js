@@ -2,7 +2,7 @@
 
 var controllers = angular.module('controllers', ['services']);
 
-function BookController($scope, Book, Author, EventBus) {
+controllers.controller('BookController', ['$scope', 'Book', 'Author', 'EventBus', function($scope, Book, Author, EventBus) {
     $scope.currentBook = new Book();
     $scope.currentBook.releaseDate = new Date().getTime();
     $scope.books = Book.query();
@@ -57,9 +57,9 @@ function BookController($scope, Book, Author, EventBus) {
     $scope.sendRemoveBookCommand = function (bookId) {
         sendCommand(EventBus, "command.remove.book", {bookId: bookId});
     };
-}
+}]);
 
-function AuthorController($scope, Author, EventBus) {
+controllers.controller('AuthorController', ['$scope', 'Author', 'EventBus', function($scope, Author, EventBus) {
     $scope.currentAuthor = new Author();
     $scope.authors = Author.query();
     $scope.showId = false;
@@ -102,11 +102,11 @@ function AuthorController($scope, Author, EventBus) {
     $scope.sendRemoveAuthorCommand = function (authorId) {
         sendCommand(EventBus, "command.remove.author", {authorId: authorId});
     };
-}
+}]);
 
-function NavController($scope, $rootScope, $route) {
-	$rootScope.route = $route;
-}
+controllers.controller('NavController', ['$scope', '$rootScope', '$route', function($scope, $rootScope, $route) {
+    $rootScope.route = $route;
+}]);
 
 function sendCommand(eventbus, command, payload) {
     eventbus.send(command, payload, function (reply) {

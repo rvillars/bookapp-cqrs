@@ -1,8 +1,8 @@
 'use strict';
 
-var directive = angular.module('directives', ['ui.directives']).directive;
+var directives = angular.module('directives', ['ui.directives']);
 
-directive('date', function (dateFilter) {
+directives.directive('date', ['dateFilter', function (dateFilter) {
     return {
         require:'ngModel',
         link:function (scope, elm, attrs, ctrl) {
@@ -30,4 +30,4 @@ directive('date', function (dateFilter) {
             });
         }
     };
-});
+}]);
