@@ -40,7 +40,7 @@
              		<li ng-class="{active: route.current.activeMenu == 'authors'}"><a href="http://localhost:8080/#/authors">Authors</a></li>
            		</ul>
                 <ul class="nav pull-right">
-                    <li><a href="#" style="color: red;"><div id="replymessage"></div></a></li>
+                    <li><p><div class="badge {{ connectionStateClass }}">{{ connectionState }}</div></p></li>
                 </ul>
          	</div><!--/.nav-collapse -->
      	</div>
