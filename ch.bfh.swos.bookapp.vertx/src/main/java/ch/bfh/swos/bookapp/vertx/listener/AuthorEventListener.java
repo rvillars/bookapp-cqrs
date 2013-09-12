@@ -25,6 +25,8 @@ public class AuthorEventListener {
     public static final String EVENT_AUTHOR_ADDED = "event.author.added";
     public static final String EVENT_AUTHOR_REMOVED = "event.author.removed";
 
+    public static final String CLIENT_ADDRESS = "client";
+
     @Inject
     private VertXBean vertxBean;
 
@@ -32,17 +34,19 @@ public class AuthorEventListener {
     public void on(AuthorAddedEvent event) {
         System.out.println("VertX listener reveived author added event for: " + event.getFirstname() + " " +event.getLastname() + " (" + event.getAuthorId() + ")");
         JsonObject paylod = new JsonObject();
+        paylod.putString("eventId", EVENT_AUTHOR_ADDED);
         paylod.putString("authorId", event.getAuthorId());
         paylod.putString("firstname", event.getFirstname());
         paylod.putString("lastname", event.getLastname());
-        vertxBean.getEventBus().publish(EVENT_AUTHOR_ADDED, paylod);
+        vertxBean.getEventBus().publish(CLIENT_ADDRESS, paylod);
     }
 
     @EventHandler
     public void on(AuthorRemovedEvent event) {
         System.out.println("VertX listener reveived author removed event for: " + event.getAuthorId());
         JsonObject paylod = new JsonObject();
+        paylod.putString("eventId", EVENT_AUTHOR_REMOVED);
         paylod.putString("authorId", event.getAuthorId());
-        vertxBean.getEventBus().publish(EVENT_AUTHOR_REMOVED,paylod);
+        vertxBean.getEventBus().publish(CLIENT_ADDRESS,paylod);
     }
 }

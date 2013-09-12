@@ -25,11 +25,11 @@ public class Author extends AbstractAnnotatedAggregateRoot {
     }
 
     public Author(String authorId, String firstname, String lastname) {
-//        try {
-//            Thread.sleep(5000);
-//        } catch (InterruptedException e) {
-//            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
-//        }
+        try {
+            Thread.sleep(10000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
         apply(new AuthorAddedEvent(authorId, firstname, lastname));
     }
 

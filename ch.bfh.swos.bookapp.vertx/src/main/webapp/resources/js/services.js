@@ -16,12 +16,11 @@ services.factory('Author', ['$resource', function ($resource) {
 
 services.factory('EventBus', ['$rootScope', function ($rootScope) {
     var eventBus = new vertx.EventBus("http://localhost:7777/eventbus");
-    var eventHandlers = [];
     $rootScope.connectionState = "WAITING...";
     $rootScope.connectionStateClass = "badge-warning";
     eventBus.onopen = function() {
-        angular.forEach(eventHandlers, function(eventHandler) {
-            eventBus.registerHandler(eventHandler.eventId, eventHandler.callback);
+        eventBus.registerHandler('client', function(msg, replyTo) {
+            $rootScope.$broadcast(msg.eventId, msg);
         });
         $rootScope.connectionState = "CONNECTED";
         $rootScope.connectionStateClass = "badge-success";
@@ -33,10 +32,6 @@ services.factory('EventBus', ['$rootScope', function ($rootScope) {
         $rootScope.$digest();
     }
     return {
-        on: function(eventId, callback) {
-            eventHandlers.push({eventId:eventId, callback:callback});
-        },
-
         emit: function(commandId, payload) {
             eventBus.send(commandId, payload, function (reply) {
                 $.bootstrapGrowl(reply, {type:'info', offset: {from: 'top', amount: 50},width: 'auto'});

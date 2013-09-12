@@ -10,27 +10,29 @@ controllers.controller('BookController', ['$scope', 'Book', 'Author', 'EventBus'
     $scope.showId = false;
 
     // Book added event
-    EventBus.on("event.book.added", function (msg, replyTo) {
+    $scope.$on('event.book.added', function(event, msg) {
         $.bootstrapGrowl("Received book added event for: "+msg.bookTitle, {offset: {from: 'top', amount: 50},width: 'auto'});
         var book = new Book();
         book.bookId = msg.bookId;
         book.title = msg.bookTitle;
         book.releaseDate = msg.releaseDate;
         book.author = filterAuthorsById($scope.authors, msg.authorId);
-        $scope.books.push(book);
-        $scope.$digest();
+        $scope.$apply( function() {
+            $scope.books.push(book);
+        });
     });
 
     // Book removed event
-    EventBus.on("event.book.removed", function (msg, replyTo) {
+    $scope.$on('event.book.removed', function(event, msg) {
         $.bootstrapGrowl("Received book removed event for: "+msg.bookId, {offset: {from: 'top', amount: 50},width: 'auto'});
         var i = $scope.books.length;
         while (i--){
             if ($scope.books[i].bookId == msg.bookId){
-                $scope.books.splice(i, 1);
+                $scope.$apply( function() {
+                    $scope.books.splice(i, 1);
+                });
             }
         }
-        $scope.$digest();
     });
 
     $scope.cancel = function () {
@@ -56,32 +58,34 @@ controllers.controller('BookController', ['$scope', 'Book', 'Author', 'EventBus'
     };
 }]);
 
-controllers.controller('AuthorController', ['$scope', 'Author', 'EventBus', function($scope, Author, EventBus) {
+controllers.controller('AuthorController', ['$scope', 'Author', 'EventBus', '$rootScope', function($scope, Author, EventBus, $rootScope) {
     $scope.currentAuthor = new Author();
     $scope.authors = Author.query();
     $scope.showId = false;
 
     // Author added event
-    EventBus.on("event.author.added", function (msg, replyTo) {
+    $scope.$on('event.author.added', function(event, msg) {
         $.bootstrapGrowl("Received author added event for: "+msg.firstname+" "+msg.lastname, {offset: {from: 'top', amount: 50},width: 'auto'});
         var author = new Author();
         author.authorId = msg.authorId;
         author.firstname = msg.firstname;
         author.lastname = msg.lastname;
-        $scope.authors.push(author);
-        $scope.$digest();
+        $scope.$apply( function() {
+            $scope.authors.push(author);
+        });
     });
 
     // Author removed event
-    EventBus.on("event.author.removed", function (msg, replyTo) {
+    $scope.$on('event.author.removed', function(event, msg) {
         $.bootstrapGrowl("Receifed author removed event for: "+msg.authorId, {offset: {from: 'top', amount: 50},width: 'auto'});
         var i = $scope.authors.length;
         while (i--){
             if ($scope.authors[i].authorId == msg.authorId){
-                $scope.authors.splice(i, 1);
+                $scope.$apply( function() {
+                    $scope.authors.splice(i, 1);
+                });
             }
         }
-        $scope.$digest();
     });
 
     $scope.cancel = function () {
