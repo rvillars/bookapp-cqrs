@@ -22,14 +22,17 @@ services.factory('EventBus', ['$rootScope', function ($rootScope) {
         eventBus.registerHandler('client', function(msg, replyTo) {
             $rootScope.$broadcast(msg.eventId, msg);
         });
-        $rootScope.connectionState = "CONNECTED";
-        $rootScope.connectionStateClass = "badge-success";
-        $rootScope.$digest();
+        $rootScope.$apply(function() {
+            $rootScope.connectionState = "CONNECTED";
+            $rootScope.connectionStateClass = "badge-success";
+        });
+
     }
     eventBus.onclose = function() {
-        $rootScope.connectionState = "NOT CONNECTED";
-        $rootScope.connectionStateClass = "badge-important";
-        $rootScope.$digest();
+        $rootScope.$apply(function() {
+            $rootScope.connectionState = "NOT CONNECTED";
+            $rootScope.connectionStateClass = "badge-important";
+        });
     }
     return {
         emit: function(commandId, payload) {
