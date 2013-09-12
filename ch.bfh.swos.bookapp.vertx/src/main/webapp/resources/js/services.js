@@ -14,15 +14,12 @@ services.factory('Author', ['$resource', function ($resource) {
     });
 }]);
 
-services.factory('VertXEventBus', [function () {
-    return new vertx.EventBus("http://localhost:7777/eventbus");
-}]);
-
-services.factory('EventBus', ['VertXEventBus', '$rootScope', function (VertXEventBus, $rootScope) {
+services.factory('EventBus', ['$rootScope', function ($rootScope) {
+    var eventBus = new vertx.EventBus("http://localhost:7777/eventbus");
     var eventHandlers = [];
     $rootScope.connectionState = "WAITING...";
     $rootScope.connectionStateClass = "badge-warning";
-    VertXEventBus.onopen = function() {
+    eventBus.onopen = function() {
         angular.forEach(eventHandlers, function(eventHandler) {
             VertXEventBus.registerHandler(eventHandler.eventId, eventHandler.callback);
         });
@@ -30,7 +27,7 @@ services.factory('EventBus', ['VertXEventBus', '$rootScope', function (VertXEven
         $rootScope.connectionStateClass = "badge-success";
         $rootScope.$digest();
     }
-    VertXEventBus.onclose = function() {
+    eventBus.onclose = function() {
         $rootScope.connectionState = "NOT CONNECTED";
         $rootScope.connectionStateClass = "badge-important";
         $rootScope.$digest();
@@ -41,7 +38,7 @@ services.factory('EventBus', ['VertXEventBus', '$rootScope', function (VertXEven
         },
 
         emit: function(commandId, payload) {
-            VertXEventBus.send(commandId, payload, function (reply) {
+            eventBus.send(commandId, payload, function (reply) {
                 $.bootstrapGrowl(reply, {type:'info', offset: {from: 'top', amount: 50},width: 'auto'});
             });
         }
