@@ -21,7 +21,7 @@ services.factory('EventBus', ['$rootScope', function ($rootScope) {
     $rootScope.connectionStateClass = "badge-warning";
     eventBus.onopen = function() {
         angular.forEach(eventHandlers, function(eventHandler) {
-            VertXEventBus.registerHandler(eventHandler.eventId, eventHandler.callback);
+            eventBus.registerHandler(eventHandler.eventId, eventHandler.callback);
         });
         $rootScope.connectionState = "CONNECTED";
         $rootScope.connectionStateClass = "badge-success";
