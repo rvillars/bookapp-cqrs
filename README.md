@@ -9,7 +9,7 @@ But it shows how to implement a Command/Event driven application interface with 
 web clients without using the very non-eventdriven REST API.
 
 Technologies used:
-* Vert.X
+* Embedded Vert.X
 * Axon Framework
 * CQRS/DDD
 * AngularJS
