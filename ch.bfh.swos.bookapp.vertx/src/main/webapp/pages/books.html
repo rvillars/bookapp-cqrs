@@ -39,7 +39,7 @@
                     <td>{{book.releaseDate | date:'dd.MM.yyyy'}}</td>
                     <td>{{book.author.firstname }} {{book.author.lastname}}</td>
                     <td ng-show="showId">{{book.bookId}}</td>
-                    <td><a href="#changeTitleModal" role="button" class="btn btn-mini" data-toggle="modal">Change Title</a></td>
+                    <td><button id="edit" ng-click="changeTitle(book)" class="btn btn-mini">Change Title</button></td>
                     <td><button id="delete" ng-click="sendRemoveBookCommand(book.bookId)" class="btn btn-mini">Remove</button></td>
                 </tr>
                 </tbody>
@@ -47,10 +47,10 @@
         </fieldset>
     </form>
 
-    <div id="changeTitleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div id="changeTitleModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="changeTitleModalLabel" aria-hidden="true">
         <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-            <h3 id="myModalLabel">Change Book Title</h3>
+            <h3 id="changeTitleModalLabel">Change Book Title</h3>
         </div>
         <div class="modal-body">
             <form id="changeTitleform" name="changeTitleform">
@@ -61,8 +61,8 @@
             </form>
         </div>
         <div class="modal-footer">
-            <button class="btn" data-dismiss="modal" aria-hidden="true">Close</button>
-            <button class="btn btn-primary" ng-click="sendChangeBookTitleCommand(book.bookId, newTitle)">Save</button>
+            <button class="btn" data-dismiss="modal" aria-hidden="true">Cancel</button>
+            <button class="btn btn-primary" data-dismiss="modal" ng-click="sendChangeBookTitleCommand(selectedBookId, newTitle)">Change</button>
         </div>
     </div>
 

@@ -35,14 +35,31 @@ controllers.controller('BookController', ['$scope', 'Book', 'Author', 'EventBus'
         }
     });
 
+    // Book title changed event
+    $scope.$on('event.book.title.changed', function(event, msg) {
+        $.bootstrapGrowl("Received book title changed event for: "+msg.bookId, {offset: {from: 'top', amount: 50},width: 'auto'});
+        var i = $scope.books.length;
+        while (i--){
+            if ($scope.books[i].bookId == msg.bookId){
+                $scope.$apply( function() {
+                    $scope.books[i].title = msg.newBookTitle;
+                });
+            }
+        }
+    });
+
     $scope.cancel = function () {
         $scope.currentBook = new Book();
         $scope.currentBook.releaseDate = new Date().getTime();
     };
 
-    $scope.edit = function (book) {
-        $('#dialog').dialog();
-    };
+    $scope.changeTitle = function(book) {
+        $scope.$apply(new function() {
+            $scope.selectedBookId = book.bookId;
+            $scope.newTitle = book.title;
+        });
+        $('#changeTitleModal').modal('show')
+    }
 
     $scope.sendAddBookCommand = function () {
         EventBus.emit("command.add.book", {bookTitle: $scope.currentBook.title, releaseDate: $scope.currentBook.releaseDate, authorId: $scope.currentBook.author.authorId});

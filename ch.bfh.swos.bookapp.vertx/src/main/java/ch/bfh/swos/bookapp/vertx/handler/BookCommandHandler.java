@@ -1,6 +1,7 @@
 package ch.bfh.swos.bookapp.vertx.handler;
 
 import ch.bfh.swos.bookapp.cqrs.book.application.command.AddBookCommand;
+import ch.bfh.swos.bookapp.cqrs.book.application.command.ChangeBookTitleCommand;
 import ch.bfh.swos.bookapp.cqrs.book.application.command.RemoveBookCommand;
 import ch.bfh.swos.bookapp.vertx.VertXBean;
 import org.axonframework.commandhandling.gateway.CommandGateway;
@@ -27,6 +28,7 @@ public class BookCommandHandler {
 
     public static final String COMMAND_ADD_BOOK = "command.add.book";
     public static final String COMMAND_REMOVE_BOOK = "command.remove.book";
+    public static final String COMMAND_CHANGE_BOOK_TITLE = "command.change.book.title";
 
     @Inject
     private VertXBean vertx;
@@ -54,6 +56,15 @@ public class BookCommandHandler {
                 System.out.println("VertX received book remove command for: " + payload.body().getString("bookId"));
                 payload.reply("Received book remove command for id: " + payload.body().getString("bookId"));
                 commandGateway.send(new RemoveBookCommand(payload.body().getString("bookId")));
+            }
+        });
+
+        vertx.getEventBus().registerHandler(COMMAND_CHANGE_BOOK_TITLE, new Handler<Message<JsonObject>>() {
+            @Override
+            public void handle(Message<JsonObject> payload) {
+                System.out.println("VertX received change book title command for: " + payload.body().getString("bookId"));
+                payload.reply("Received change book title command for id: " + payload.body().getString("bookId"));
+                commandGateway.send(new ChangeBookTitleCommand(payload.body().getString("bookId"), payload.body().getString("newBookTitle")));
             }
         });
         System.out.println("VertX BookCommandHandler initialized");

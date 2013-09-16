@@ -44,9 +44,9 @@ public class BookPersistenceEventListener {
     @EventHandler
     public void on(BookTitleChangedEvent event) {
         System.out.println("Persistence listener reveived book title changed event for: " + event.getNewTitle() + " (" + event.getBookId() + ")");
-//        Book book = bookRepository.readByBookId(event.getBookId());
-//        book.setTitle(event.getNewTitle());
-//        bookRepository.update(book);
+        Book book = bookRepository.readByBookId(event.getBookId());
+        book.setTitle(event.getNewTitle());
+        bookRepository.update(book);
         System.out.println("Book entity updated");
     }
 
