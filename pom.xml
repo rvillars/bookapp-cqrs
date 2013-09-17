@@ -8,10 +8,11 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
   <name>Bookapp</name>
   
   <modules>
-    <module>ch.bfh.swos.bookapp.persistence</module>
+    <module>ch.bfh.swos.bookapp.jpa</module>
     <module>ch.bfh.swos.bookapp.service</module>
     <module>ch.bfh.swos.bookapp.cqrs</module>
     <module>ch.bfh.swos.bookapp.vertx</module>
+    <module>ch.bfh.swos.bookapp.elasticsearch</module>
   </modules>
   
   <build>
@@ -27,4 +28,5 @@ xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xs
 			</plugin>
 		</plugins>
 	</build>
+
 </project>

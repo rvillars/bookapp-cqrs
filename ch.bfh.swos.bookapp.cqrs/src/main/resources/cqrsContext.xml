@@ -6,14 +6,15 @@
                            http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
                            http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd">
 
-    <import resource="classpath*:persistenceContext.xml"/>
+    <import resource="classpath*:jpaContext.xml"/>
+    <!--<import resource="classpath*:elasticsearchContext.xml"/>-->
 
     <context:component-scan base-package="ch.bfh.swos.bookapp.cqrs" />
     <context:annotation-config/>
 
     <axon:annotation-config />
 
-    <axon:command-bus id="commandBus"/>
+    <axon:command-bus id="commandBus" transaction-manager="transactionManager"/>
     <axon:event-bus id="eventBus"/>
 
     <axon:event-sourcing-repository id="eventBookRepository"
@@ -36,8 +37,13 @@
         <property name="commandBus" ref="commandBus"/>
     </bean>
 
-    <axon:filesystem-event-store id="eventStore" base-dir="events"/>
+    <!-- JPA Event Store -->
+    <axon:jpa-event-store id="eventStore"/>
 
+    <!-- File System Event Store -->
+    <!--<axon:filesystem-event-store id="eventStore" base-dir="events"/>-->
+
+    <!-- MongoDB Event Store -->
     <!--<bean id="eventStore" class="org.axonframework.eventstore.mongo.MongoEventStore">-->
         <!--<constructor-arg ref="mongoTemplate"/>-->
     <!--</bean>-->

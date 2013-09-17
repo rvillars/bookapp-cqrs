@@ -1,7 +1,7 @@
 package ch.bfh.swos.bookapp.service;
 
-import ch.bfh.swos.bookapp.model.Book;
-import ch.bfh.swos.bookapp.repository.BookRepository;
+import ch.bfh.swos.bookapp.jpa.model.Book;
+import ch.bfh.swos.bookapp.jpa.repository.BookRepository;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;

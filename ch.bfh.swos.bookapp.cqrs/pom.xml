@@ -14,7 +14,7 @@
     <dependencies>
         <dependency>
             <groupId>ch.bfh.swos.bookapp</groupId>
-            <artifactId>ch.bfh.swos.bookapp.persistence</artifactId>
+            <artifactId>ch.bfh.swos.bookapp.jpa</artifactId>
             <version>0.0.1-SNAPSHOT</version>
             <scope>compile</scope>
         </dependency>

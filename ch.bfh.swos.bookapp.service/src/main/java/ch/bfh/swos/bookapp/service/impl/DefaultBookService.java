@@ -1,7 +1,7 @@
 package ch.bfh.swos.bookapp.service.impl;
 
-import ch.bfh.swos.bookapp.model.Book;
-import ch.bfh.swos.bookapp.repository.BookRepository;
+import ch.bfh.swos.bookapp.jpa.model.Book;
+import ch.bfh.swos.bookapp.jpa.repository.BookRepository;
 import ch.bfh.swos.bookapp.service.BookService;
 import ch.bfh.swos.bookapp.service.dto.BookDTO;
 import org.modelmapper.ModelMapper;
