@@ -49,4 +49,9 @@ public class DefaultBookService implements BookService {
 		bookRepository.delete(book);
 	}
 
+    @Override
+    public void deleteAll() {
+        bookRepository.deleteAll();
+    }
+
 }

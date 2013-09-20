@@ -16,6 +16,8 @@ public interface BookRepository {
 
 	public void delete(Book book);
 
+    public void deleteAll();
+
     public Book readByBookId(String bookId);
 
 }

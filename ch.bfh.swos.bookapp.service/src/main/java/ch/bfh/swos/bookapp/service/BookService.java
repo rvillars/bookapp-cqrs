@@ -15,4 +15,6 @@ public interface BookService {
 	public BookDTO update(BookDTO book);
 
 	public void delete(BookDTO book);
+
+    public void deleteAll();
 }

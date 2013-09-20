@@ -48,6 +48,12 @@ public class JPAAuthorRepository implements AuthorRepository {
 
     @Override
     @Transactional
+    public void deleteAll() {
+        em.createQuery("delete from Author").executeUpdate();
+    }
+
+    @Override
+    @Transactional
     public Author readByAuthorId(String authorId) {
         Query query = em.createQuery("select a from Author a where a.authorId = :authorId");
         query.setParameter("authorId", authorId);

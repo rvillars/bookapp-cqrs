@@ -48,4 +48,9 @@ public class DefaultAuthorService implements AuthorService {
 		Author author = authorRepository.read(authorDto.getId());
 		authorRepository.delete(author);
 	}
+
+    @Override
+    public void deleteAll() {
+        authorRepository.deleteAll();
+    }
 }

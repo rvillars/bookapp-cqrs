@@ -15,4 +15,6 @@ public interface AuthorService {
 	public AuthorDTO update(AuthorDTO book);
 
 	public void delete(AuthorDTO book);
+
+    public void deleteAll();
 }

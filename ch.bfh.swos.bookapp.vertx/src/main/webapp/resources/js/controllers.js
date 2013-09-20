@@ -119,8 +119,16 @@ controllers.controller('AuthorController', ['$scope', 'Author', 'EventBus', '$ro
     };
 }]);
 
-controllers.controller('NavController', ['$scope', '$rootScope', '$route', function($scope, $rootScope, $route) {
+controllers.controller('NavController', ['$scope', '$rootScope', '$route', '$http' , function($scope, $rootScope, $route, $http) {
     $rootScope.route = $route;
+
+    $scope.clean = function() {
+        $http({method: 'GET', url: '/rest/jpaviewcache/clean'})
+    }
+
+    $scope.rebuild = function() {
+        $http({method: 'GET', url: '/rest/jpaviewcache/rebuild'})
+    }
 }]);
 
 function filterAuthorsById(array, id) {

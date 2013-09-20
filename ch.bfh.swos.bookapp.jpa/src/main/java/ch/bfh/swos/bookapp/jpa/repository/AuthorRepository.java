@@ -16,6 +16,8 @@ public interface AuthorRepository {
 
 	public void delete(Author author);
 
+    public void deleteAll();
+
     public Author readByAuthorId(String authorId);
 
 }

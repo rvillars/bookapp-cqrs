@@ -47,6 +47,12 @@ public class JPABookRepository implements BookRepository {
 	}
 
     @Override
+    @Transactional
+    public void deleteAll() {
+        em.createQuery("delete from Book").executeUpdate();
+    }
+
+    @Override
     public Book readByBookId(String bookId) {
         Query query = em.createQuery("select book from Book book where book.bookId = :bookId");
         query.setParameter("bookId", bookId);
