@@ -1,4 +1,4 @@
-bookapp-cqrs
+bookapp-cqrs [![Build Status](https://travis-ci.org/rvillars/bookapp-cqrs.png?branch=master)](https://travis-ci.org/rvillars/bookapp-cqrs)
 ============
 This is a small example bookstore application with a basic CQRS/DDD driven approach.
 It uses Axon Framework for server-side CQRS and an embedded Vert.X eventbus to propagate events directly to the client.
