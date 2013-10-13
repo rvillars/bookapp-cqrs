@@ -1,6 +1,5 @@
 package ch.bfh.swos.bookapp.cqrs.book.domain.event;
 
-import ch.bfh.swos.bookapp.cqrs.author.domain.Author;
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 
 import java.util.Date;

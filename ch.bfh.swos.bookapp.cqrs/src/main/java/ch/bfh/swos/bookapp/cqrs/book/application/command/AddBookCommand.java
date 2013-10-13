@@ -1,6 +1,5 @@
 package ch.bfh.swos.bookapp.cqrs.book.application.command;
 
-import ch.bfh.swos.bookapp.cqrs.author.domain.Author;
 import org.axonframework.commandhandling.annotation.TargetAggregateIdentifier;
 import org.axonframework.domain.IdentifierFactory;
 

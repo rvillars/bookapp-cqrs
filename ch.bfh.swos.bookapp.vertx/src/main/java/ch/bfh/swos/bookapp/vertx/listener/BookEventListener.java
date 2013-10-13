@@ -6,7 +6,6 @@ import ch.bfh.swos.bookapp.cqrs.book.domain.event.BookTitleChangedEvent;
 import ch.bfh.swos.bookapp.vertx.VertXBean;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.vertx.java.core.json.JsonObject;
 
 import javax.inject.Inject;

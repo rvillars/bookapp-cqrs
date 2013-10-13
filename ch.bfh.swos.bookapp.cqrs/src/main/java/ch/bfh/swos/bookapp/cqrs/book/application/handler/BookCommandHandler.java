@@ -10,7 +10,6 @@ import org.springframework.stereotype.Component;
 
 import javax.inject.Inject;
 import javax.inject.Named;
-import javax.lang.model.element.Name;
 
 /**
  * Created with IntelliJ IDEA.

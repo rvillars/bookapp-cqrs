@@ -2,13 +2,10 @@ package ch.bfh.swos.bookapp.query.repository.impl;
 
 import ch.bfh.swos.bookapp.query.dto.AuthorDTO;
 import ch.bfh.swos.bookapp.query.dto.BookDTO;
-import ch.bfh.swos.bookapp.query.repository.AuthorRepository;
 import ch.bfh.swos.bookapp.query.repository.BookRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.jdbc.core.support.JdbcDaoSupport;
-import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.inject.Inject;
 import javax.inject.Named;
@@ -41,7 +38,8 @@ public class JdbcBookRepository extends JdbcDaoSupport implements BookRepository
 
     @Override
     public void deleteAll() {
-        getJdbcTemplate().update("DELETE * FROM BOOK");
+        getJdbcTemplate().update("DELETE FROM BOOK");
+        System.out.println("Deleted BOOK table");
     }
 
     private class BookRowMapper implements RowMapper<BookDTO> {

@@ -1,6 +1,5 @@
 package ch.bfh.swos.bookapp.cqrs.book;
 
-import ch.bfh.swos.bookapp.cqrs.author.domain.event.AuthorAddedEvent;
 import ch.bfh.swos.bookapp.cqrs.book.application.command.AddBookCommand;
 import ch.bfh.swos.bookapp.cqrs.book.application.command.ChangeBookTitleCommand;
 import ch.bfh.swos.bookapp.cqrs.book.application.command.RemoveBookCommand;

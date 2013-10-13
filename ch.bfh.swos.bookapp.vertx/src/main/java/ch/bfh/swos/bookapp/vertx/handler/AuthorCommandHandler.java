@@ -2,12 +2,9 @@ package ch.bfh.swos.bookapp.vertx.handler;
 
 import ch.bfh.swos.bookapp.cqrs.author.application.command.AddAuthorCommand;
 import ch.bfh.swos.bookapp.cqrs.author.application.command.RemoveAuthorCommand;
-import ch.bfh.swos.bookapp.cqrs.book.application.command.AddBookCommand;
-import ch.bfh.swos.bookapp.cqrs.book.application.command.RemoveBookCommand;
 import ch.bfh.swos.bookapp.vertx.VertXBean;
 import org.axonframework.commandhandling.gateway.CommandGateway;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.vertx.java.core.Handler;
 import org.vertx.java.core.eventbus.Message;
 import org.vertx.java.core.json.JsonObject;
@@ -15,7 +12,6 @@ import org.vertx.java.core.json.JsonObject;
 import javax.annotation.PostConstruct;
 import javax.inject.Inject;
 import javax.inject.Named;
-import java.util.Date;
 
 /**
  * Created with IntelliJ IDEA.

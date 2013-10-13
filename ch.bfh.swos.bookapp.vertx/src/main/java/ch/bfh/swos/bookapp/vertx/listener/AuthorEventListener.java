@@ -2,12 +2,9 @@ package ch.bfh.swos.bookapp.vertx.listener;
 
 import ch.bfh.swos.bookapp.cqrs.author.domain.event.AuthorAddedEvent;
 import ch.bfh.swos.bookapp.cqrs.author.domain.event.AuthorRemovedEvent;
-import ch.bfh.swos.bookapp.cqrs.book.domain.event.BookAddedEvent;
-import ch.bfh.swos.bookapp.cqrs.book.domain.event.BookRemovedEvent;
 import ch.bfh.swos.bookapp.vertx.VertXBean;
 import org.axonframework.eventhandling.annotation.EventHandler;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Controller;
 import org.vertx.java.core.json.JsonObject;
 
 import javax.inject.Inject;

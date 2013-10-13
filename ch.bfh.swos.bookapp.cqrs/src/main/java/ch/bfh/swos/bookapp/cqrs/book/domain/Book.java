@@ -1,6 +1,5 @@
 package ch.bfh.swos.bookapp.cqrs.book.domain;
 
-import ch.bfh.swos.bookapp.cqrs.author.domain.Author;
 import ch.bfh.swos.bookapp.cqrs.book.domain.event.BookAddedEvent;
 import ch.bfh.swos.bookapp.cqrs.book.domain.event.BookRemovedEvent;
 import ch.bfh.swos.bookapp.cqrs.book.domain.event.BookTitleChangedEvent;
