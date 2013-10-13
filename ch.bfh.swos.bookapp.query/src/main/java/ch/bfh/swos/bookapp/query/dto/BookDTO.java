@@ -1,4 +1,4 @@
-package ch.bfh.swos.bookapp.service.dto;
+package ch.bfh.swos.bookapp.query.dto;
 
 import java.io.Serializable;
 import java.util.Date;
@@ -9,8 +9,6 @@ import java.util.Date;
  */
 public class BookDTO implements Serializable {
 
-	private static final long serialVersionUID = -7591860079571184677L;
-	private Long id;
     private String bookId;
 	private String title;
 	private Date releaseDate;
@@ -19,14 +17,6 @@ public class BookDTO implements Serializable {
 
 	public BookDTO() {
 		super();
-	}
-
-	public Long getId() {
-		return this.id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
 	}
 
     public String getBookId() {

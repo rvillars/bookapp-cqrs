@@ -1,9 +1,8 @@
 package ch.bfh.swos.bookapp.vertx.controller;
 
-import ch.bfh.swos.bookapp.service.BookService;
-import ch.bfh.swos.bookapp.service.dto.BookDTO;
+import ch.bfh.swos.bookapp.query.dto.BookDTO;
+import ch.bfh.swos.bookapp.query.repository.BookRepository;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,7 +15,7 @@ import java.util.Collection;
 public class BookController {
 
 	@Inject
-	private BookService bookService;
+	private BookRepository bookRepository;
 
 	/**
 	 * ReadAll
@@ -25,7 +24,7 @@ public class BookController {
 	@ResponseBody
 	public Collection<BookDTO> list() {
 		System.out.println("Collection of Book requested");
-		return bookService.list();
+		return bookRepository.list();
 	}
 
 }

@@ -1,8 +1,8 @@
 package ch.bfh.swos.bookapp.vertx.controller;
 
 import ch.bfh.swos.bookapp.cqrs.common.EventStorePlayer;
-import ch.bfh.swos.bookapp.service.AuthorService;
-import ch.bfh.swos.bookapp.service.BookService;
+import ch.bfh.swos.bookapp.query.repository.AuthorRepository;
+import ch.bfh.swos.bookapp.query.repository.BookRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -25,10 +25,10 @@ public class ReplayController {
     private EventStorePlayer eventStorePlayer;
 
     @Inject
-    private BookService bookService;
+    private BookRepository bookRepository;
 
     @Inject
-    private AuthorService authorService;
+    private AuthorRepository authorRepository;
 
     /**
      * Clean the Tables for the JPA ViewCache
@@ -37,8 +37,8 @@ public class ReplayController {
     @ResponseBody
     public void cleanViewJPACache() {
         System.out.println("Cleaning the JPA View Cache");
-        bookService.deleteAll();
-        authorService.deleteAll();
+        bookRepository.deleteAll();
+        authorRepository.deleteAll();
     }
 
     /**

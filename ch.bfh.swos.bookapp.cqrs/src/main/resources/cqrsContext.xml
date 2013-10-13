@@ -7,7 +7,6 @@
                            http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd">
 
     <import resource="classpath*:jpaContext.xml"/>
-    <!--<import resource="classpath*:elasticsearchContext.xml"/>-->
 
     <context:component-scan base-package="ch.bfh.swos.bookapp.cqrs" />
     <context:annotation-config/>

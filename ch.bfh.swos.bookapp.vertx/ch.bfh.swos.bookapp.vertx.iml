@@ -71,8 +71,7 @@
     <orderEntry type="library" name="Maven: org.springframework:spring-expression:3.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.axonframework:axon-mongo:2.0.3" level="project" />
     <orderEntry type="library" name="Maven: org.mongodb:mongo-java-driver:2.11.2" level="project" />
-    <orderEntry type="module" module-name="ch.bfh.swos.bookapp.service" />
-    <orderEntry type="library" name="Maven: org.modelmapper:modelmapper:0.5.5" level="project" />
+    <orderEntry type="module" module-name="ch.bfh.swos.bookapp.query" />
     <orderEntry type="library" name="Maven: org.springframework:spring-webmvc:3.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: org.springframework:spring-web:3.2.0.RELEASE" level="project" />
     <orderEntry type="library" name="Maven: io.vertx:vertx-core:2.0.1-final" level="project" />
@@ -82,7 +81,6 @@
     <orderEntry type="library" name="Maven: io.netty:netty-all:4.0.7.Final" level="project" />
     <orderEntry type="library" name="Maven: com.hazelcast:hazelcast:2.6" level="project" />
     <orderEntry type="library" name="Maven: log4j:log4j:1.2.16" level="project" />
-    <orderEntry type="library" name="Maven: io.vertx:vertx-platform:2.0.1-final" level="project" />
   </component>
 </module>
 

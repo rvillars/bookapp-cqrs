@@ -12,7 +12,7 @@
         http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
     <import resource="classpath*:cqrsContext.xml"/>
-    <import resource="classpath*:serviceContext.xml"/>
+    <import resource="classpath*:queryContext.xml"/>
 
     <context:component-scan base-package="ch.bfh.swos.bookapp.vertx"/>
     <mvc:annotation-driven/>
