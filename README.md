@@ -8,6 +8,8 @@ The example consists currently of just two aggregates so it isn't actually a goo
 But it shows how to implement a Command/Event driven application interface with Axon and a way to extend this approach to
 web clients without using the very non-eventdriven REST API.
 
+For a short introduction in CQRS see [this Prezi](http://prezi.com/bbbqharguddg/?utm_campaign=share&utm_medium=copy&rc=ex0share): 
+
 Technologies used:
 * Embedded Vert.X
 * Axon Framework
